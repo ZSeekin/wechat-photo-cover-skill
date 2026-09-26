@@ -1,0 +1,11 @@
+{
+  "photo": "approved-photo.jpg",
+  "stem": "example-photo-cover",
+  "size": [1175, 500],
+  "focus": [0.5, 0.5],
+  "brightness": 1.0,
+  "overlay_opacity": 0.3,
+  "kicker": "Qoder 实测",
+  "title": ["从一堆资料", "到一张产业地图"],
+  "subtitle": "一次从资料到交付的完整行业调研"
+}
