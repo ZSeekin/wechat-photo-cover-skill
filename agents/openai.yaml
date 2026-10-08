@@ -1,4 +1,4 @@
 interface:
-  display_name: "公众号实景封面"
-  short_description: "读取文章主题，挑选有寓意的实景大图，用克制排版制作公众号横版封面"
-  default_prompt: "请用 $wechat-photo-cover 为这篇文章制作封面，优先匹配主题的实景摄影，保留有字版、无字版和素材来源。"
+  display_name: "公众号双版本封面"
+  short_description: "读文章后制作实景摄影和 AI 生成背景两张完成排版的横版封面"
+  default_prompt: "请用 $wechat-photo-cover 为这篇文章制作实景摄影版和 AI 主题背景版两张完整封面，保留各自无字版和素材说明。"

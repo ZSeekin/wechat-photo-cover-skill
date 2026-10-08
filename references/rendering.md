@@ -1,6 +1,6 @@
-# 确定性摄影封面渲染
+# 确定性封面渲染
 
-`scripts/render_cover.py` 只处理已有的本地照片；选图、文章理解、许可核对和视觉验收由技能工作流完成。需要 Python 3 和 Pillow。
+`scripts/render_cover.py` 处理已有的本地摄影或 AI 背景图；文章理解、摄影选图与许可核对、AI 背景生成和视觉验收由技能工作流完成。需要 Python 3 和 Pillow。
 
 ## 运行
 
@@ -10,7 +10,7 @@
 python3 scripts/render_cover.py --config references/example-cover.json --output-dir /absolute/path/to/work/cover-preview
 ```
 
-换成新文章时，复制示例 JSON 到当前任务工作目录，替换 `photo` 和文案，再将输出目录设为当前任务授权的成品目录。`photo` 相对路径从 JSON 所在目录解析。不要把脚本输出目录设成原照片文件。
+换成新文章时，复制示例 JSON 到当前任务工作目录，分别为实景摄影和 AI 背景建立配置：`photo` 指向各自本地图片，`stem` 使用不同名称（如 `article-photo`、`article-ai`），默认保持相同文案与尺寸。两次运行脚本，将输出目录设为当前任务授权的成品目录。`photo` 相对路径从 JSON 所在目录解析。不要让脚本输出覆盖任何源图。
 
 ## 配置
 
@@ -28,7 +28,7 @@ python3 scripts/render_cover.py --config references/example-cover.json --output-
 }
 ```
 
-- `photo`：必填，本地图片。
+- `photo`：必填，本地图片；字段名沿用历史名称，可以是实景照片或生成背景。
 - `stem`：输出文件名，不含扩展名。
 - `size`：成品像素尺寸，默认 `[2350, 1000]`。
 - `focus`：等比填充裁切时的水平、垂直位置，范围 0–1。`[0,0]` 靠左上，`[1,1]` 靠右下。
@@ -44,6 +44,6 @@ macOS 默认寻找冬青黑体中文字体，标题 W6、其他文字 W3。其�
 
 ## 输出与限制
 
-输出包括 `-clean.jpg/png`（无字版）、`-cover.jpg/png`（有字版）和对应 `-mobile.jpg` 缩略图。脚本会检查裁切范围与文字溢出，源照片不覆盖。过长文案应先缩短，再考虑字号与布局。
+每个配置输出 `-clean.jpg/png`（无字版）、`-cover.jpg/png`（有字版）和对应 `-mobile.jpg` 缩略图。两张完成排版的 `-cover` 才是默认交付的两个方向；`-clean` 是附加版本。脚本会检查裁切范围与文字溢出，源图不覆盖。过长文案应先缩短，再考虑字号与布局。
 
 默认版式适合左文右景；不代替设计判断。不能为了适配默认坐标而遮挡主景或把照片裁坏。读取输出图和手机缩略图后，再决定是否交付。

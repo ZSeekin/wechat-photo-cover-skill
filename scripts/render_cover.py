@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Crop and typeset a locally sourced photograph; no network or generation.
+"""Crop and typeset a local photo or generated background; no network or generation.
 
 Usage: python3 render_cover.py --config cover.json --output-dir outputs/covers
 Requires Pillow. Coordinates and font sizes in layout use a 2350 x 1000 design
@@ -258,7 +258,7 @@ def render(config_path, output_dir):
     paths = [output_dir / f"{stem}-{variant}{suffix}"
              for variant in ("clean", "cover") for suffix in (".jpg", ".png", "-mobile.jpg")]
     if any(p.resolve() == source or (p.exists() and p.samefile(source)) for p in paths):
-        raise ValueError("An output path would overwrite the source photograph; change stem or output-dir")
+        raise ValueError("An output path would overwrite the source image; change stem or output-dir")
     output_dir.mkdir(parents=True, exist_ok=True)
     for variant, image in (("clean", clean), ("cover", cover)):
         image.save(output_dir / f"{stem}-{variant}.jpg", quality=96, subsampling=0)
